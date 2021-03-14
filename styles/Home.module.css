@@ -14,6 +14,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  display: none;
 }
 
 .footer {
@@ -23,6 +24,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  display: none;
 }
 
 .footer img {
@@ -119,4 +121,22 @@
     width: 100%;
     flex-direction: column;
   }
+}
+
+.panelWrap {
+  background:  rgba(33, 33, 33, 0.5);
+  padding: 20px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.city_list {
+  border: 1px solid gray;
+  color: #eaeaea;
+}
+
+.city_list ul li {
+  cursor: pointer;
+  list-style: none;
+  line-height: 2.2em;
 }
