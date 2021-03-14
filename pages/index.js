@@ -2,6 +2,7 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import '../lib/cities'
 import getCitiesData from '../lib/cities'
+import {getIndexCity, getStrEmbededSrc} from '../lib/util'
 
 export async function getStaticProps(context) {
   const cities = getCitiesData()
@@ -11,15 +12,6 @@ export async function getStaticProps(context) {
     }
   }
 }
-
-function getIndexCity(cities) {
-  return cities[Math.floor(Math.random() * cities.length)] 
-}
-
-function getStrEmbededSrc(city){
-  return `https://www.youtube.com/embed/${city.id}?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&mute=1`;  
-}
-
 
 export default function Home({ cities }) {
   const indexCityRandom = getIndexCity(cities) 
