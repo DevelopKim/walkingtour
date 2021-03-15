@@ -27,7 +27,18 @@ export default function Home({ cities, youtubeOption }) {
   const indexSrc = getStrEmbededSrc(indexCityRandom);
   const [videoId, setState] = useState(indexCityRandom.id);
   function selectCity(id, e) {
+    
     setState(id);
+  }
+  
+  function _onready(event){
+    console.log('ready')
+    event.target.playVideo()
+  }
+  
+  function _onstatechange(event){
+    console.log('change')
+    console.log(event)
   }
 
   return (
@@ -41,8 +52,8 @@ export default function Home({ cities, youtubeOption }) {
         <YouTube
           videoId={videoId}
           opts={youtubeOption}
-          onReady={(e) => e.target.playVideo()}
-          onStateChange={(e) => e.target.playVideo()}
+          onReady={(e) => _onready(e)}
+          onStateChange={(e) => _onstatechange(e)}
           containerClassName="video-foreground"
           id="youtube-player"
         />
