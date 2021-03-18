@@ -1,10 +1,8 @@
 .container {
-  min-height: 100vh;
-  padding: 0 0.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  overflow: hidden;
+  position: fixed;
+  height: 100%;
+  width: 100%;
 }
 
 .main {
@@ -121,22 +119,16 @@
     width: 100%;
     flex-direction: column;
   }
-}
+} 
 
-.panelWrap {
-  background:  rgba(33, 33, 33, 0.5);
-  padding: 20px;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-.city_list {
-  border: 1px solid gray;
-  color: #eaeaea;
-}
 
-.city_list ul li {
-  cursor: pointer;
-  list-style: none;
-  line-height: 2.2em;
+.mobile_click_play {
+  color: #d4d1d1;
+  font-size: 1.9em;
+  text-align: center;
+  z-index: 99;
+  text-decoration: underline;
+  position: fixed;
+  top: 70%;
+  width: 100%;
 }

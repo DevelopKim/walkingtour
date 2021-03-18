@@ -3,14 +3,14 @@ import styles from "../styles/Home.module.css";
 import "../lib/cities";
 import getCitiesData from "../lib/cities";
 import { getIndexCity, getStrEmbededSrc, getYoutubeOptions } from "../lib/util";
-import React, { useState } from "react"
-import YouTube from "react-youtube"
+import React, { useState, useRef, useEffect } from "react";
+import YouTube from "react-youtube";
 import {
-  BrowserView,
-  MobileView,
   isBrowser,
   isMobile,
 } from "react-device-detect";
+
+import Panel from "../components/panel";
 
 export async function getStaticProps(context) {
   const cities = getCitiesData();
@@ -24,74 +24,86 @@ export async function getStaticProps(context) {
 
 export default function Home({ cities, youtubeOption }) {
   const indexCityRandom = getIndexCity(cities);
-  const indexSrc = getStrEmbededSrc(indexCityRandom);
   const [videoId, setState] = useState(indexCityRandom.id);
   function selectCity(id, e) {
-    
     setState(id);
+    const component = (
+      <div id="youtuber-player">
+        <YouTube
+          videoId={id}
+          opts={youtubeOption}
+          onReady={(e) => _onready(e)}
+          onStateChange={(e) => _onstatechange(e)}
+        />
+      </div>
+    );
+    setYoutubeComponent(component);
   }
-  
-  function _onready(event){
-    console.log('ready')
+
+  function _onready(event) {
     event.target.playVideo()
-  }
-  
-  function _onstatechange(event){
-    console.log('change')
-    console.log(event)
+    // event.target.stopVideo();
   }
 
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>Walking Tour</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+  function _onstatechange(event) {
+    if (event.data === -1) {
+      event.target.playVideo();
+    }
+  }
 
-      <div className="video-background">
+  function _onClickPlay(event) {
+    const component = (
+      <div id="youtuber-player">
         <YouTube
           videoId={videoId}
           opts={youtubeOption}
           onReady={(e) => _onready(e)}
           onStateChange={(e) => _onstatechange(e)}
-          containerClassName="video-foreground"
-          id="youtube-player"
         />
       </div>
+    );
+    setYoutubeComponent(component);
+    let elLi = window.document.getElementsByClassName(videoId)[0];
+    setClickVisible(false);
+  }
 
-      <div className={styles.panelWrap}>
-        <h2>Walking Tour</h2>
-        <div className={styles.city_list}>
-          <ul>
-            {cities.map(({ name, url, id }) => (
-              <li key={id} onClick={(e) => selectCity(id, e)}>
-                {name}
-              </li>
-            ))}
-          </ul>
+  let tmpComponent;
+  if (isBrowser) {
+    tmpComponent = (
+      <div id="youtuber-player">
+        <YouTube
+          videoId={videoId}
+          opts={youtubeOption}
+          onReady={(e) => _onready(e)}
+          onStateChange={(e) => _onstatechange(e)}
+        />
+      </div>
+    );
+  }
+  const [youtubeComponent, setYoutubeComponent] = useState(tmpComponent);
+  const [mobileClickVisible, setClickVisible] = useState(true);
+  const cityRef = useRef([]);
+  useEffect(() => {
+  })
+  return (
+    <div className={styles.container}>
+      <Head>
+        <title>Walking Tour</title>
+        <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="viewport"
+          content="width=device-width,initial-scale=1,user-scalable=no"
+        />
+      </Head>
+
+      {/* <YouTubePlayer /> */}
+      <div className="video-background">
+        <div className="video-foreground">
+          <>{youtubeComponent}</>
         </div>
       </div>
-      <main className={styles.main}>
-        <h1>{indexCityRandom.name}</h1>
-        <ul>
-          {cities.map(({ name, url, id }) => (
-            <li key={id}>
-              {name} - {url}
-            </li>
-          ))}
-        </ul>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+      {mobileClickVisible && isMobile && <p onClick={_onClickPlay} className={styles.mobile_click_play}>click to play!!</p>}
+      <Panel cities={cities} selectCity={selectCity} />
     </div>
   );
 }

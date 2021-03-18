@@ -1,0 +1,50 @@
+.panel_wrap {
+	width: 24%;
+	background: rgba(33, 33, 33, 0.5);
+	padding: 20px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 98;
+}
+.city_list {
+	border: 1px solid gray;
+	border-radius: 6px;
+	color: #eaeaea;
+	background: rgba(33, 33, 33, 0.6);
+	>div {
+		height: 170px;
+		overflow-y: auto;
+	}
+	>p {
+		background: hsla(0, 0%, 94%, 0.4);
+		font-size: 0.9rem;
+		padding: 0;
+		margin: 0;
+		text-align: center;
+	}
+	ul {
+		margin: 10px 0 0 0;
+		padding: 0 2%;
+		li {
+			font-size: 1rem;
+			cursor: pointer;
+			list-style: none;
+			line-height: 1.5em;
+			padding-left: 3%;
+		}
+	}
+}
+.mobile_panel {
+	width: 100%;
+	height: 20%;
+	background: rgba(33, 33, 33, 0.5);
+	padding: 20px;
+	position: absolute;
+	bottom: 0;
+	z-index: 98;
+	.city_list {
+		position: fixed;
+		top: 10%;
+	}
+}

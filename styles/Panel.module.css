@@ -1,0 +1,56 @@
+.panelWrap {
+  width: 24%;
+  background: rgba(33, 33, 33, 0.5);
+  padding: 20px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 98;
+}
+.city_list {
+  border: 1px solid gray;
+  border-radius: 6px;
+  color: #eaeaea;
+  background: rgba(33, 33, 33, 0.6);
+}
+
+.city_list > div {
+  height: 170px;
+  overflow-y: auto;
+}
+
+.city_list > p {
+  background: hsla(0, 0%, 94%, 0.4);
+  font-size: 0.9rem;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.city_list ul {
+  margin: 10px 0 0 0;
+  padding: 0 2%;
+}
+
+.city_list ul li {
+  font-size: 1rem;
+  cursor: pointer;
+  list-style: none;
+  line-height: 1.5em;
+  padding-left: 3%;
+}
+
+.mobilePanel{
+  width: 100%;
+  height: 20%;
+  background: rgba(33, 33, 33, 0.5);
+  padding: 20px;
+  position: absolute;
+  bottom: 0;
+  z-index: 98;
+}
+
+.mobilePanel .city_list {
+    position: fixed;
+    top: 10%;
+}

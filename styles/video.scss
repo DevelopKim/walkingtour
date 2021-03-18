@@ -1,20 +1,11 @@
 .video-background {
+  background: #000;
   position: fixed;
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
-  z-index: -99;
-  &::after {
-    display: block;
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-  }
+  z-index: -100;
 }
 .video-foreground,
 .video-background iframe {
@@ -23,7 +14,6 @@
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none;
 }
 
 @media (min-aspect-ratio: 16/9) {
@@ -37,4 +27,19 @@
     width: 300%;
     left: -100%;
   }
+}
+@media (min-width: 1000px) {
+  .video-background iframe,.video-foreground,ReactPlayer {
+      pointer-events:none
+  }
+}
+
+#youtube-player {
+  width: 640px;
+  height: 360px;
+}
+
+#youtube-player > div {
+  width: 100%;
+  height: 100%;
 }
