@@ -8,11 +8,11 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "10.0.8",
-    "react": "17.0.1",
-    "react-device-detect": "^1.17.0",
-    "react-dom": "17.0.1",
-    "react-youtube": "^7.13.1",
-    "sass": "^1.32.8"
+    "next": "^14.1.0",
+    "react": "^18.2.0",
+    "react-device-detect": "^2.2.3",
+    "react-dom": "^18.2.0",
+    "react-youtube": "^10.1.0",
+    "sass": "^1.71.0"
   }
 }
